@@ -13,8 +13,9 @@ class Ball(pygame.sprite.Sprite):
         self.rect.center = (round(pos[0]), round(pos[1]))
         self.pos = pos
         self.v = v # tuple
-        self.collide = False
+        
         self.r = self.rect.width * 0.5
+        self.collided = []
 
     def update(self):
         self.pos = (self.pos[0]+self.v[0], self.pos[1]+self.v[1])
