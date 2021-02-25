@@ -1,6 +1,7 @@
-import pygame, math
+import pygame, math, random
+from ball import Ball
 
-pos_y = 580
+pos_y = 520
 angle_dif = math.pi/90
 angle_min = math.pi / 12
 
@@ -27,5 +28,17 @@ class Launcher():
         end_pos = (self.pos[0] + round(R*math.cos(self.angle)), self.pos[1] - round(R*math.sin(self.angle)))
         pygame.draw.line(screen, self.color, self.pos, end_pos)
         pygame.draw.circle(screen, (255,255,255), self.pos, self.r, 1)
+    
+    def launch_balls(self, ball_group, pic_path):
+        v0 = self.v0
+        angle = self.angle
+        vx = v0 * math.cos(angle)
+        vy = v0 * math.sin(angle) * -1
+        
+        ball = Ball(self.pos, (vx, vy), pic_path)
+        ball_group.add(ball)
+    
+    def set_pos_x(self, x):
+        self.pos = (round(x), self.pos[1])
 
 

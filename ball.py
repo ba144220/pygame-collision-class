@@ -20,10 +20,15 @@ class Ball(pygame.sprite.Sprite):
     def update(self):
         self.pos = (self.pos[0]+self.v[0], self.pos[1]+self.v[1])
         self.rect.center = (round(self.pos[0]), round(self.pos[1]))
-    
-        if self.pos[1] >= screen_height:
-            print('margin bottom')
+
+        if self.pos[1] >= screen_height:     
             self.kill()
+    
+    def get_killed_x(self):
+        if self.pos[1] >= screen_height - self.r: 
+            return self.pos[0]  
+        else:
+            return None
     
 
 
