@@ -90,6 +90,7 @@ def ball_block_detect(ball, block):
 
     if collided == True and active==True:
         ball.collided.append(block_id)
+        block.hit()
 
         if action == 't':
             axis = (0,-1)

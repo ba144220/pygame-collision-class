@@ -1,8 +1,8 @@
 import pygame, math
 from vector_operations import *
 
-screen_width = 400
-screen_height = 600
+screen_width = 420
+screen_height = 540
 
 
 class Ball(pygame.sprite.Sprite):

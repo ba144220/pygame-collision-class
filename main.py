@@ -32,12 +32,12 @@ for i in range(20):
 
 # Blocks
 block_group = pygame.sprite.Group()
-block1 = Block((180,90),  58,  1)
-block2 = Block((240,150),  58,  2)
-block3 = Block((240, 210),  58, 3)
-block_top = Block((210, -210),  422, -1 )
-block_left = Block((-270,270),   542,  -2)
-block_right = Block((690, 270),   542,  -3)
+block1 = Block((150,90),  (58,58), 10,  1)
+block2 = Block((210,150),  (58,58),10,  2)
+block3 = Block((210, 210),  (58,58),10, 3)
+block_top = Block((210, -210),  (422,422), -1, -1 )
+block_left = Block((-270,270),   (542,542), -1, -2)
+block_right = Block((690, 270),    (542,542), -1,  -3)
 block_group.add(block1)
 block_group.add(block_left)
 block_group.add(block_right)
@@ -107,6 +107,7 @@ while True:
             ball_block_detect(bl, bk)
 
     ball_group.update()
+    block_group.update()
 
     screen.fill(BLACK)
 
