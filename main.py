@@ -31,10 +31,13 @@ for i in range(20):
 '''
 
 # Blocks
+block_width = screen_width//7
+block_size = (block_width-2, block_width-2)
+
 block_group = pygame.sprite.Group()
-block1 = Block((150,90),  (58,58), 10,  1)
-block2 = Block((210,150),  (58,58),10,  2)
-block3 = Block((210, 210),  (58,58),10, 3)
+block1 = Block((150,90),  block_size, 10,  1)
+block2 = Block((210,150),  block_size,10,  2)
+block3 = Block((210, 210),  block_size,10, 3)
 block_top = Block((210, -210),  (422,422), -1, -1 )
 block_left = Block((-270,270),   (542,542), -1, -2)
 block_right = Block((690, 270),    (542,542), -1,  -3)

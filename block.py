@@ -8,7 +8,7 @@ screen_height = 540
 class Block(pygame.sprite.Sprite):
     def __init__(self, pos, size, number,  id):
         super().__init__()
-    
+        self.pos = pos
         self.image = pygame.Surface(size)
         self.image.fill(init_color)
         self.rect = self.image.get_rect()
@@ -36,6 +36,7 @@ class Block(pygame.sprite.Sprite):
             self.kill()
     
     def update(self):
+        self.rect.center = (round(self.pos[0]), round(self.pos[1]))
         self.image.fill(init_color)
         self.textSurf = self.font.render(str(self.number), 1, (0,0,0))
         tW = self.textSurf.get_width()
