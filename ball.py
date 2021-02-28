@@ -7,7 +7,7 @@ screen_height = 540
 size = (20,20)
 
 class Ball(pygame.sprite.Sprite):
-    def __init__(self, pos, v, pic_path):
+    def __init__(self, pos, v):
         super().__init__()
         self.image = pygame.Surface(size)
         pygame.draw.circle(self.image, (255,255,255), (10,10), 10)

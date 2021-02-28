@@ -68,12 +68,14 @@ while True:
             launcher.tilt_right()
         
         elif keys[pygame.K_SPACE]:
-            launcher.launch_balls(ball_group,"./ball_1.png")
+            launcher.launch_balls(ball_group)
 
             # 準備下一個state
             state = 'launch'
             frame_counter = 0
             ball_counter = 1
+
+
 
     elif state == 'launch':
         frame_counter += 1
@@ -81,13 +83,14 @@ while True:
         if frame_counter % 4 == 0:
             # level 幾就有幾顆球
             if ball_counter < level:
-                launcher.launch_balls(ball_group,"./ball_1.png")
+                launcher.launch_balls(ball_group)
                 ball_counter += 1
             else:
                 state = "hit"
                 first_killed_ball_x = None
         
     elif state == "hit":
+        
         # 第一顆球落下的位置會是下一次發射的位置
         if first_killed_ball_x == None:
             for ball in ball_group:
@@ -95,8 +98,11 @@ while True:
                 if first_killed_ball_x != None:
                     launcher.set_pos_x(first_killed_ball_x)
                     break
-        # 所有的球都掉下來了
-        if len(ball_group) == 0:
+        # 所有的球都掉下來了 或 按up
+        keys = pygame.key.get_pressed()
+        if len(ball_group) == 0 or keys[pygame.K_UP]:
+            for ball in ball_group:
+                ball.kill()
             state = 'new_block'
             level += 1
     
