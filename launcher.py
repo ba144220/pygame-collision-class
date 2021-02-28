@@ -5,6 +5,8 @@ pos_y = 520
 angle_dif = math.pi/90
 angle_min = math.pi / 12
 
+screen_width = 420
+
 class Launcher():
     def __init__(self, pos_x, v0):
         super().__init__()
@@ -39,7 +41,10 @@ class Launcher():
         ball_group.add(ball)
     
     def set_pos_x(self, x):
-        
+        if x < 50:
+            x=50
+        elif x > screen_width - 50:
+            x=screen_width-50
         self.pos = (round(x), self.pos[1])
 
 
