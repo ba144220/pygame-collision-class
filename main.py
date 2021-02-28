@@ -23,17 +23,10 @@ clock = pygame.time.Clock()
 
 # Balls
 ball_group = pygame.sprite.Group()
-'''
-for i in range(20):
-    #ball = Ball((60+32*i,300-8*i), (4,-1), "ball_1.png")
-    ball = Ball((random.randrange(100, screen_width-100), random.randrange(300,screen_height-100)), (8.0,-1.0), "./ball_1.png")
-    ball_group.add(ball)
-'''
 
 # Blocks
 block_width = screen_width//7
 block_size = (block_width-2, block_width-2)
-
 block_group = pygame.sprite.Group()
 
 block_top = Block((210, -210),  (422,422), -1, -1 )
@@ -117,7 +110,10 @@ while True:
             
 
             if random.random() < prob:
-                block = Block((block_width*(i+0.5),block_width*0.5),  block_size, level,  block_id)
+                if random.random() < 0.2:
+                    block = Block((block_width*(i+0.5),block_width*0.5),  block_size, 2*level,  block_id, True)
+                else:  
+                    block = Block((block_width*(i+0.5),block_width*0.5),  block_size, level,  block_id)
                 block_group.add(block)
                 block_id += 1
         state = 'move_block'
