@@ -39,6 +39,7 @@ class Launcher():
         ball_group.add(ball)
     
     def set_pos_x(self, x):
+        
         self.pos = (round(x), self.pos[1])
 
 
