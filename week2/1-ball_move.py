@@ -1,7 +1,6 @@
 import sys
 import pygame
 import numpy as np
-from vector_operations import *
 
 pygame.init()
 

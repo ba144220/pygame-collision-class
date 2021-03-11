@@ -1,6 +1,5 @@
 import sys
 import pygame
-from vector_operations import *
 
 pygame.init()
 
@@ -16,16 +15,8 @@ RED = (200,0,0)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("test test")
 
-block_center = (300,300)
-block_width = 100
-block_color = BLUE
-
-rect = pygame.Rect(0,0,1,1)
-rect.width = block_width
-rect.height = block_width
-rect.center = block_center
-pygame.draw.rect(screen, block_color, rect)
-
+rect = pygame.Rect((250, 250), (100, 100))
+pygame.draw.rect(screen, BLUE, rect)
 
 while True:
     for event in pygame.event.get():
