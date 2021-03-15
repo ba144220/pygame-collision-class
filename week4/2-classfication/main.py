@@ -11,6 +11,12 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 pygame.display.set_caption("test test")
 
+# 幾個分檔要領:
+#   不同的 class，不同檔 -> ball.py, block.py
+#   程式會用到的 function 放別的檔 -> functions.py
+#   各種共用參數放一個檔 -> utils.py
+# 註: 分檔後記得 import
+
 # -----Block-----
 blocks = pygame.sprite.Group()
 blocks.add(Block((300, 300), (100, 100), BLUE))
@@ -24,6 +30,7 @@ blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2), BLUE))
 # -----Ball-----
 balls = pygame.sprite.Group()
 balls.add(Ball((40.0,200.0), 20, GREEN, (6.0,3.0)))
+balls.add(Ball((80.0,200.0), 20, GREEN, (-6.0,3.0)))
 # -----Ball-----
 
 while True:

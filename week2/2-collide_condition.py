@@ -17,18 +17,19 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 pygame.display.set_caption("test test")
 
+# 為了要讓判斷 collision、模組化方便，把屬於 block 的性質獨立出來
 # -----Block-----
-block_center = (300,300)
 block_width = 100
-block_color = BLUE
-
-rect = pygame.Rect(0,0,1,1)
-rect.width = block_width
-rect.height = block_width
-rect.center = block_center
-pygame.draw.rect(screen, block_color, rect)
+block_center = (300, 300)
+# 這裡 (250, 250) 比較尷尬，可以不改沒關係，包成 class 之後 block 位置不會這樣設
+rect = pygame.Rect((250, 250), (block_width, block_width)) 
+pygame.draw.rect(screen, BLUE, rect)
 # -----Block-----
 
+# 為了判斷 collision，繼續把 ball_radius 獨立出來
+# 好一點的話，也要把 ball_color 獨立出來，因為那是屬於 ball 的一種性質，不應該出現在 function 裡面
+# 註: 把 ball_color 等屬於 ball 的性質，會在講到 class 的時候更加清楚，這裡只是先提
+# 可以讓他們把 ball 限制在畫面裡面
 # -----Ball-----
 ball_center = np.array((40.0,200.0))
 ball_radius = 20
@@ -42,11 +43,11 @@ def move_ball():
     pygame.draw.circle(screen, ball_color, ball_center, ball_radius)
 # -----Ball-----
 
+# 這裡要讓他們想: 
+#   要在哪個地方判斷 collision? (在 While)
+#   判斷 collision 需要哪些參數?
+# 這裡只要判斷有碰撞，並在碰撞時，印出 collide 即可，不須寫反射判斷
 # -----Collision-----
-def reflect(a, b):
-    p = np.array(b) * (np.dot(a, b) / np.dot(b, b))
-    return a - 2*p
-
 def collision():
     global block_width, ball_center, block_center, ball_radius, ball_v
     block_hw = block_width / 2
@@ -55,25 +56,14 @@ def collision():
     v_abs = np.abs(v)
 
     if (v_abs <= block_hw).any():
-        (dir_x, dir_y) = (v_abs <= block_hw + ball_radius) & np.flip(v_abs <= block_hw)
-        if dir_x:
-            print("reflect x")
-            ball_v = reflect(ball_v, (1,0))
-            return
-        elif dir_y:
-            print("reflect y")
-            ball_v = reflect(ball_v, (0,1))
+        if ((v_abs <= block_hw + ball_radius) & np.flip(v_abs <= block_hw)).any():
+            print("collide")
             return
             
     dist = np.linalg.norm(v_abs - (block_hw, block_hw))
 
     if dist <= ball_radius:
-        if np.prod(v) > 0:
-            print("reflect (1, 1)")
-            ball_v = reflect(ball_v, (1,1))
-        else:
-            print("reflect (1, -1)")
-            ball_v = reflect(ball_v, (1,-1))
+        print("collide")
 # -----Collision-----
 
 while True:
@@ -84,7 +74,7 @@ while True:
 
     screen.fill(BLACK)
     
-    pygame.draw.rect(screen, block_color, rect)
+    pygame.draw.rect(screen, BLUE, rect)
 
     collision()
     move_ball()

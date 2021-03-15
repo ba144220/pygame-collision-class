@@ -1,3 +1,4 @@
+from numpy.core.fromnumeric import size
 import pygame
 from utils import *
 import numpy as np

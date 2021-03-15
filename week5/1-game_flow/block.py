@@ -6,7 +6,8 @@ class Block(pygame.sprite.Sprite):
     def __init__(self, pos, size):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface(size)
-        self.image.fill(BLUE)
+        t_rect = pygame.Rect((1, 1), (size[0] - 2, size[1] - 2))
+        pygame.draw.rect(self.image, BLUE, t_rect)
         self.rect = self.image.get_rect()
         self.rect.center = np.around(pos)
 

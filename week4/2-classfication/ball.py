@@ -4,7 +4,7 @@ from utils import *
 
 class Ball(pygame.sprite.Sprite):
     def __init__(self, pos, radius, color, v):
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.image = pygame.Surface((2*radius, 2*radius), pygame.SRCALPHA)
         pygame.draw.circle(self.image, color, (radius, radius), radius)
         self.rect = self.image.get_rect()
@@ -12,5 +12,4 @@ class Ball(pygame.sprite.Sprite):
         self.v = np.array(v)
         
     def update(self):
-        pygame.sprite.Sprite.update(self)
         self.rect.center = np.remainder(self.rect.center + self.v, [SCREEN_WIDTH, SCREEN_HEIGHT])

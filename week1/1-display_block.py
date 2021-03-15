@@ -12,6 +12,7 @@ BLUE = (0,0,200)
 GREEN = (0,200,0)
 RED = (200,0,0)
 
+# 這裡要講說，為了共用參數、讀去參數方便，會把一些參數另外寫好
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("test test")
 
