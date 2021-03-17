@@ -1,3 +1,8 @@
+# 剩下的雜項:
+#   1. Block 變色 (block.py)
+#   2. 有機率產生數字兩倍的磚塊 (line 89)
+#   3. 滑順的移動磚塊 (line 98)
+
 import sys
 import pygame
 pygame.init()
@@ -8,20 +13,17 @@ from ball import *
 from launcher import *
 from functions import *
 
-
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 pygame.display.set_caption("test test")
 
 blocks = pygame.sprite.Group()
-block_top = Wall((210, -210), (422,422))
-block_left = Wall((-270,270), (542,542))
-block_right = Wall((690, 270), (542,542))
-blocks.add(block_top)
-blocks.add(block_left)
-blocks.add(block_right)
+blocks.add(Wall((SCREEN_WIDTH//2, -2*BALL_R), (SCREEN_WIDTH, 2*BALL_R)))   # top
+blocks.add(Wall((-2*BALL_R, SCREEN_HEIGHT//2), (2*BALL_R, SCREEN_HEIGHT))) # left
+blocks.add(Wall((SCREEN_WIDTH + 2*BALL_R, SCREEN_HEIGHT//2), (2*BALL_R, SCREEN_HEIGHT)))   # right
 
 balls = pygame.sprite.Group()
+
 launcher = Launcher()
 
 level = 1
@@ -72,7 +74,7 @@ while True:
             frame_counter = 0
             launched_balls = 0
             x_setted = False
-            level += 50
+            level += 1
             state = 'new_block'
 
     elif state == "new_block":
@@ -84,6 +86,7 @@ while True:
                 prob = 0.6
 
             if random.random() < prob:
+                # 有機率產生數字兩倍的 Block
                 if random.random() < 0.2:
                     block = Block((BLOCK_WIDTH*(i+0.5),BLOCK_WIDTH*0.5),  BLOCK_SIZE, 2*level, True)
                 else:  
@@ -92,6 +95,7 @@ while True:
 
         state = 'move_block'
 
+    # 每幀移動 2 格
     elif state == "move_block":
         for block in blocks:
             if block.move_down(2):
