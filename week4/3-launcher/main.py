@@ -14,21 +14,35 @@ pygame.display.set_caption("test test")
 
 # -----Block-----
 blocks = pygame.sprite.Group()
-blocks.add(Block((300, 300), (100, 100), BLUE))
+blocks.add(Block((300, 300), (100, 100)))
 
-blocks.add(Block((1, 300), (2, SCREEN_HEIGHT), BLUE))
-blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT), BLUE))
-blocks.add(Block((300, 1), (SCREEN_WIDTH, 2), BLUE))
-blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2), BLUE))
+blocks.add(Block((1, 300), (2, SCREEN_HEIGHT)))
+blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT)))
+blocks.add(Block((300, 1), (SCREEN_WIDTH, 2)))
+blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2)))
 # -----Block-----
 
 # -----Ball-----
 balls = pygame.sprite.Group()
 # -----Ball-----
 
+# 這裡 Launcher 有時間的話再給他們寫
+# 沒時間的話，直接給他們 Launcher.py，讓他們讀懂 code 後自己操作
+# Launcher 要求:
+#   class Ball 初始化條件 __init__(pos, v)，詳見 ball.py
+# 
+# 註: 增加了 utils.py 的一些定義
+#   BALL_V = 8
+#   LAUNCHER_Y = 520
+#   LAUNCHER_R_IN = 15
+#   LAUNCHER_R_BARREL = 100
+#   LAUNCHER_COLOR = WHITE
+# 
+# 註: 可以改 __init__() 下 self.angle 來調整 Launcher 初始角度
 # -----Launcher-----
 launcher = Launcher()
 # -----Launcher-----
+
 level = 5
 
 while True:

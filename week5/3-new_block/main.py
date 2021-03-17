@@ -14,23 +14,29 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("test test")
 
 blocks = pygame.sprite.Group()
-block_top = Wall((210, -210), (422,422))
-block_left = Wall((-270,270), (542,542))
-block_right = Wall((690, 270), (542,542))
-blocks.add(block_top)
-blocks.add(block_left)
-blocks.add(block_right)
-# blocks.add(Block((1, 300), (2, SCREEN_HEIGHT), BLUE))
-# blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT), BLUE))
-# blocks.add(Block((300, 1), (SCREEN_WIDTH, 2), BLUE))
+blocks.add(Wall((SCREEN_WIDTH//2, -2*BALL_R), (SCREEN_WIDTH, 2*BALL_R)))    # top
+blocks.add(Wall((-2*BALL_R, SCREEN_HEIGHT//2), (2*BALL_R, SCREEN_HEIGHT)))  # left
+blocks.add(Wall((SCREEN_WIDTH + 2*BALL_R, SCREEN_HEIGHT//2), (2*BALL_R, SCREEN_HEIGHT)))    # right
 
 balls = pygame.sprite.Group()
+
 launcher = Launcher()
 
+# 預設遊戲流程 
+#   aim -> launch_hit -> new_block -> game_over
+#    ^----------------------|
+
+# new_block 需要做的事:
+#   1. 隨機產生方塊
+#   2. 移動方塊
+#      註: 三面牆壁不需要移動，所以我用 class Wall(Block)，並 overload move_block()
+#   3. 如果 block 碰到最下面，結束遊戲
+
 level = 1
-state = "aim"
+# 一開始的 state 改成 new_block
+state = "new_block"
 frame_counter = 0
-launched = False
+launched_balls = 0
 x_setted = False
 
 while True:
@@ -51,11 +57,10 @@ while True:
             state = "launch_hit"
 
     elif state == "launch_hit":
-        if not launched:
+        if launched_balls < level:
             if frame_counter % 4 == 0:
                 launcher.launch_one_ball(balls)
-                if len(balls) >= level:
-                    launched = True
+                launched_balls += 1
 
             frame_counter += 1
     
@@ -63,8 +68,9 @@ while True:
             for block in blocks:
                 collision(ball, block)
         balls.update()
+        blocks.update()
 
-        if not x_setted and Ball.first_killed_x:
+        if not x_setted and launched_balls >= level and Ball.first_killed_x:
             launcher.set_pos_x(Ball.first_killed_x)
             x_setted = True
 
@@ -73,10 +79,10 @@ while True:
             balls.empty()
             Ball.first_killed_x = None
             frame_counter = 0
-            launched = False
+            launched_balls = 0
             x_setted = False
             level += 1
-            state = 'new_block'
+            state = "new_block"
 
     elif state == "new_block":
         for i in range(7):

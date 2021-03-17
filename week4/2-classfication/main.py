@@ -19,18 +19,18 @@ pygame.display.set_caption("test test")
 
 # -----Block-----
 blocks = pygame.sprite.Group()
-blocks.add(Block((300, 300), (100, 100), BLUE))
+blocks.add(Block((300, 300), (100, 100)))
 
-blocks.add(Block((1, 300), (2, SCREEN_HEIGHT), BLUE))
-blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT), BLUE))
-blocks.add(Block((300, 1), (SCREEN_WIDTH, 2), BLUE))
-blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2), BLUE))
+blocks.add(Block((1, 300), (2, SCREEN_HEIGHT)))
+blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT)))
+blocks.add(Block((300, 1), (SCREEN_WIDTH, 2)))
+blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2)))
 # -----Block-----
 
 # -----Ball-----
 balls = pygame.sprite.Group()
-balls.add(Ball((40.0,200.0), 20, GREEN, (6.0,3.0)))
-balls.add(Ball((80.0,200.0), 20, GREEN, (-6.0,3.0)))
+balls.add(Ball((40.0,200.0), (6.0,3.0)))
+balls.add(Ball((80.0,200.0), (-6.0,3.0)))
 # -----Ball-----
 
 while True:

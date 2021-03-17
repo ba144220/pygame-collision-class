@@ -4,10 +4,11 @@ import numpy as np
 
 class Block(pygame.sprite.Sprite):
     def __init__(self, pos, size):
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.image = pygame.Surface(size)
-        t_rect = pygame.Rect((1, 1), (size[0] - 2, size[1] - 2))
-        pygame.draw.rect(self.image, BLUE, t_rect)
+        # 這裡稍微改變一下方塊著色，讓它周圍有個縫隙，比較好看
+        # 但判斷 collision 範圍 self.rect 沒變
+        pygame.draw.rect(self.image, BLOCK_COLOR, ((1, 1), (size[0] - 2, size[1] - 2)))
         self.rect = self.image.get_rect()
         self.rect.center = np.around(pos)
 

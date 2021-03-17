@@ -3,6 +3,8 @@ import numpy as np
 from utils import *
 
 class Ball(pygame.sprite.Sprite):
+    first_killed_x = None
+    
     def __init__(self, pos, v):
         super().__init__()
         self.image = pygame.Surface((2*BALL_R, 2*BALL_R), pygame.SRCALPHA)
@@ -13,3 +15,8 @@ class Ball(pygame.sprite.Sprite):
         
     def update(self):
         self.rect.center = np.around(self.rect.center + self.v)
+        if self.rect.centery > SCREEN_HEIGHT - BALL_R:
+            if Ball.first_killed_x == None:
+                Ball.first_killed_x = self.rect.centerx
+            self.kill()
+            print("killed")

@@ -17,7 +17,7 @@ class Block(pygame.sprite.Sprite):
         self.blit_to_image()
 
     def blit_to_image(self):
-        size = np.array(self.image.get_size())
+        size = np.array(BLOCK_SIZE)
         pygame.draw.rect(self.image, self.color, ((1, 1), size - (2, 2)))
         pygame.draw.rect(self.image, BLACK, ((4, 4), size - (8, 8)))
         textSurf = self.font.render(str(self.number), True, self.color, BLACK)

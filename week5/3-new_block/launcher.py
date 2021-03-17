@@ -7,7 +7,7 @@ from ball import Ball
 class Launcher():
     def __init__(self):
         self.pos = np.array((SCREEN_WIDTH/2, LAUNCHER_Y))
-        self.angle = pi/3
+        self.angle = pi/4
         self.angle_dif = pi/90
         self.angle_min = pi/12
     
@@ -20,7 +20,7 @@ class Launcher():
             self.angle += self.angle_dif
 
     def draw(self, screen):
-        end_pos = self.pos + LAUNCHER_R_BARREL * np.array((cos(self.angle), -1*sin(self.angle)))
+        end_pos = np.around(self.pos + LAUNCHER_R_BARREL * np.array((cos(self.angle), -1*sin(self.angle))))
         pygame.draw.line(screen, LAUNCHER_COLOR, self.pos, end_pos)
         pygame.draw.circle(screen, WHITE, self.pos, LAUNCHER_R_IN, 1)
     
