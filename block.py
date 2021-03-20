@@ -13,7 +13,7 @@ class Block(pygame.sprite.Sprite):
         self.rect.center = np.around(pos)
         self.number = number
         self.color = BLOCK_INIT_COLOR_DOUBLE if double else BLOCK_INIT_COLOR
-        self.color_dif = (np.array(self.color) - BLOCK_FINAL_COLOR)/number
+        self.color_dif = (np.array(self.color) - BLOCK_FINAL_COLOR)/(number - 1 if number != 1 else 1)
         self.blit_to_image()
 
     def blit_to_image(self):

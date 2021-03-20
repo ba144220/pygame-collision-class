@@ -7,7 +7,7 @@ class Block(pygame.sprite.Sprite):
     font.set_bold(True)
 
     # 增加 self.color 來記錄現在的顏色
-    # 增加 self.color 來記錄每次要改變多少顏色
+    # 增加 self.color_dif 來記錄每次要改變多少顏色
     # utils.py 增加
     #   BLOCK_INIT_COLOR = (229, 51, 103)
     #   BLOCK_INIT_COLOR_DOUBLE = (0, 200, 255)
@@ -21,7 +21,7 @@ class Block(pygame.sprite.Sprite):
         self.rect.center = np.around(pos)
         self.number = number
         self.color = np.array(BLOCK_INIT_COLOR_DOUBLE if double else BLOCK_INIT_COLOR)
-        self.color_dif = (self.color - BLOCK_FINAL_COLOR)/number
+        self.color_dif = (self.color - BLOCK_FINAL_COLOR)/(number - 1 if number != 1 else 1)
         self.blit_to_image()
 
     # 這裡的 BLOCK_COLOR 都變成 self.color
