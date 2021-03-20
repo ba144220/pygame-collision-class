@@ -27,7 +27,7 @@ balls = pygame.sprite.Group()
 # -----Ball-----
 
 # 這裡 Launcher 有時間的話再給他們寫
-# 沒時間的話，直接給他們 Launcher.py，讓他們讀懂 code 後自己操作
+# 沒時間的話，直接給他們 launcher.py，讓他們讀懂 code 後自己操作
 # Launcher 要求:
 #   class Ball 初始化條件 __init__(pos, v)，詳見 ball.py
 # 

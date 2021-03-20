@@ -69,7 +69,7 @@ while True:
             frame_counter = 0
             launched_balls = 0
             x_setted = False
-            level += 1
+            level += 40
             state = 'new_block'
 
     elif state == "new_block":

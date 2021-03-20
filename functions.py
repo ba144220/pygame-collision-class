@@ -1,7 +1,6 @@
 import numpy as np
 
 def reflect(a, b):
-    print(f"reflect {b}")
     p = np.array(b) * (np.dot(a, b) / np.dot(b, b))
     return a - 2*p
 

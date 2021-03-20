@@ -19,4 +19,3 @@ class Ball(pygame.sprite.Sprite):
             if Ball.first_killed_x == None:
                 Ball.first_killed_x = self.rect.centerx
             self.kill()
-            print("killed")
