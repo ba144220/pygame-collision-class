@@ -22,7 +22,7 @@ pygame.display.set_caption("test test")
 block_width = 100
 block_center = (300, 300)
 # 這裡 (250, 250) 比較尷尬，可以不改沒關係，包成 class 之後 block 位置不會這樣設
-rect = pygame.Rect((250, 250), (block_width, block_width)) 
+rect = pygame.Rect((250, 250), (block_width, block_width))
 pygame.draw.rect(screen, BLUE, rect)
 # -----Block-----
 

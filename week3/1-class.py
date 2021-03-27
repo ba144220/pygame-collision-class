@@ -53,7 +53,6 @@ blocks.add(Block((1, 300), (2, SCREEN_HEIGHT)))
 blocks.add(Block((SCREEN_WIDTH-1, 300), (2, SCREEN_HEIGHT)))
 blocks.add(Block((300, 1), (SCREEN_WIDTH, 2)))
 blocks.add(Block((300, SCREEN_HEIGHT-1), (SCREEN_WIDTH, 2)))
-
 # -----Block-----
 
 # -----Ball-----

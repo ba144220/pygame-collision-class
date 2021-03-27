@@ -33,12 +33,12 @@ def collision(ball, block):
     dist = np.linalg.norm(u_abs - (block_hw, block_hh))
 
     if dist <= ball_radius:
-        ball.rect.center = np.around(ball_rect_center - ball_v)
-        block.collided()
-        if np.dot(ball_v * u_sign, (1, 1)) < 0:
-            ball.v = reflect(ball_v, u_sign)
+        if np.dot(ball_v * u_sign, (u_abs - (block_hw, block_hh))) < 0:
+            ball.v = reflect(ball_v, (u_abs - (block_hw, block_hh))*u_sign)
         elif np.dot(ball_v * u_sign, (1, 0)) < 0:
             ball.v = reflect(ball_v, (1, 0))
         else:
             ball.v = reflect(ball_v, (0, 1))
+        ball.rect.center = np.around(ball_rect_center - ball_v)
+        block.collided()
         return
